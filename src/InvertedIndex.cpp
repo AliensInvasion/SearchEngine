@@ -1,6 +1,6 @@
 #include "InvertedIndex.h"
 
-std::mutex InvertedIndex::mutex;
+std::mutex mutex;
 
 void InvertedIndex::UpdateDocumentBase(const std::vector<std::string> &inputDocs) {
     docs.clear();

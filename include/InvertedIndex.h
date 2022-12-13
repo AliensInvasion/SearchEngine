@@ -7,6 +7,7 @@
 #include <mutex>
 #include "RelativeIndex.h"
 
+
 struct Entry
 {
     size_t docId, count;
@@ -27,9 +28,7 @@ public:
     std::vector<Entry> getWordCount(const std::string& word) const;
     std::vector<Entry> getWordFrequency(const std::string &inWord) const;
 
-
 private:
-    static std::mutex mutex;
     std::vector<std::string> docs;
     std::map<std::string, std::vector<Entry>> freqDictionary;
 };
