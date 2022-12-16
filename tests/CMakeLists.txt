@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.11)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(SrcFiles
-	${SRC_DIR}/invertedIndex.cpp
+	${SRC_DIR}/InvertedIndex.cpp
 	${SRC_DIR}/SearchEngine.cpp
 )
 

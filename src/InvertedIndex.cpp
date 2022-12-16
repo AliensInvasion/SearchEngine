@@ -36,17 +36,18 @@ void InvertedIndex::doIndexation(const std::vector<std::string> &documents)
     unsigned long const numThreads = std::min(hardwareThreads!=0?hardwareThreads:2,maxThreads);
     unsigned long const blockSize = documentsSize/numThreads;
 
-    std::thread threads[numThreads-1];
     auto documentsStart = documents.begin();
+
+    std::vector<std::thread> threads{};
     for (size_t i = 0; i < numThreads-1; ++i) {
         auto documentsEnd = documentsStart;
         std::advance(documentsEnd, blockSize);
-        threads[i] = std::thread([&documents, &documentsStart, &documentsEnd, this]()
+        threads.emplace_back(std::thread([&documentsStart, &documentsEnd, this]()
                 {
                     for (auto it = documentsStart; it != documentsEnd; ++it) {
                         this->indexOneDocument(*it);
                     }
-                });
+                }));
         documentsStart = documentsEnd;
     }
 
